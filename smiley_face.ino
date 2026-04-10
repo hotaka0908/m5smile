@@ -144,16 +144,6 @@ void drawFace(FaceState state) {
       break;
   }
 
-  // 状態表示テキスト（通常時・怒り時は白文字、微笑みは黒文字）
-  uint32_t textColor = (state == HAPPY) ? TFT_BLACK : TFT_WHITE;
-  M5.Display.setTextColor(textColor);
-  M5.Display.setTextSize(1);
-  M5.Display.setCursor(10, M5.Display.height() - 20);
-  switch (state) {
-    case NORMAL: M5.Display.print("Normal"); break;
-    case HAPPY:  M5.Display.print("Happy! (1 tap)"); break;
-    case ANGRY:  M5.Display.print("Angry! (2 taps)"); break;
-  }
 }
 
 // 微笑み音（明るいメロディ）
