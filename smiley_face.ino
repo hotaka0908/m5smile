@@ -167,11 +167,11 @@ void playHappySound() {
   M5.Speaker.stop();
 }
 
-// 怒り音（低い不快な音）
+// 怒り音（不快な音）
 void playAngrySound() {
-  M5.Speaker.tone(200, 150);   // 低い音
+  M5.Speaker.tone(400, 150);   // 低めの音
   delay(150);
-  M5.Speaker.tone(150, 200);   // さらに低い音
+  M5.Speaker.tone(300, 200);   // さらに低い音
   delay(200);
   M5.Speaker.stop();
 }
