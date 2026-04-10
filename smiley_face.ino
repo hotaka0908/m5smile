@@ -84,8 +84,15 @@ void drawFace(FaceState state) {
   int centerY = M5.Display.height() / 2;
   int faceRadius = 80;
 
-  // 背景クリア（通常時は黒、それ以外は白）
-  uint32_t bgColor = (state == NORMAL) ? TFT_BLACK : TFT_WHITE;
+  // 背景クリア（通常時は黒、怒りは赤、微笑みは白）
+  uint32_t bgColor;
+  if (state == NORMAL) {
+    bgColor = TFT_BLACK;
+  } else if (state == ANGRY) {
+    bgColor = TFT_RED;
+  } else {
+    bgColor = TFT_WHITE;
+  }
   M5.Display.fillScreen(bgColor);
 
   // 顔の輪郭（黄色い丸）
@@ -139,8 +146,8 @@ void drawFace(FaceState state) {
       break;
   }
 
-  // 状態表示テキスト（通常時は白文字、それ以外は黒文字）
-  uint32_t textColor = (state == NORMAL) ? TFT_WHITE : TFT_BLACK;
+  // 状態表示テキスト（通常時・怒り時は白文字、微笑みは黒文字）
+  uint32_t textColor = (state == HAPPY) ? TFT_BLACK : TFT_WHITE;
   M5.Display.setTextColor(textColor);
   M5.Display.setTextSize(1);
   M5.Display.setCursor(10, M5.Display.height() - 20);
@@ -153,11 +160,11 @@ void drawFace(FaceState state) {
 
 // 微笑み音（明るいメロディ）
 void playHappySound() {
-  M5.Speaker.tone(880, 100);   // A5
+  M5.Speaker.tone(440, 100);   // A4
   delay(100);
-  M5.Speaker.tone(1108, 100);  // C#6
+  M5.Speaker.tone(554, 100);   // C#5
   delay(100);
-  M5.Speaker.tone(1318, 150);  // E6
+  M5.Speaker.tone(659, 150);   // E5
   delay(150);
   M5.Speaker.stop();
 }
