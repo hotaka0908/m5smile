@@ -85,15 +85,13 @@ void drawFace(FaceState state) {
   int faceRadius = 80;
 
   // 背景クリア（通常時は黒、怒りは赤、微笑みは白）
-  uint32_t bgColor;
   if (state == NORMAL) {
-    bgColor = TFT_BLACK;
+    M5.Display.fillScreen(TFT_BLACK);
   } else if (state == ANGRY) {
-    bgColor = TFT_RED;
+    M5.Display.fillScreen(M5.Display.color565(255, 0, 0));  // 明示的に赤
   } else {
-    bgColor = TFT_WHITE;
+    M5.Display.fillScreen(TFT_WHITE);
   }
-  M5.Display.fillScreen(bgColor);
 
   // 顔の輪郭（黄色い丸）
   M5.Display.fillCircle(centerX, centerY, faceRadius, TFT_YELLOW);
