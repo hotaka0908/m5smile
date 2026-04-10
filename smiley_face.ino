@@ -24,7 +24,7 @@ void setup() {
   M5.begin(cfg);
 
   M5.Display.setRotation(1);
-  M5.Display.fillScreen(TFT_WHITE);
+  M5.Display.fillScreen(TFT_BLACK);
 
   // スピーカー初期化
   M5.Speaker.setVolume(128);
@@ -84,8 +84,9 @@ void drawFace(FaceState state) {
   int centerY = M5.Display.height() / 2;
   int faceRadius = 80;
 
-  // 背景クリア
-  M5.Display.fillScreen(TFT_WHITE);
+  // 背景クリア（通常時は黒、それ以外は白）
+  uint32_t bgColor = (state == NORMAL) ? TFT_BLACK : TFT_WHITE;
+  M5.Display.fillScreen(bgColor);
 
   // 顔の輪郭（黄色い丸）
   M5.Display.fillCircle(centerX, centerY, faceRadius, TFT_YELLOW);
@@ -138,8 +139,9 @@ void drawFace(FaceState state) {
       break;
   }
 
-  // 状態表示テキスト
-  M5.Display.setTextColor(TFT_BLACK);
+  // 状態表示テキスト（通常時は白文字、それ以外は黒文字）
+  uint32_t textColor = (state == NORMAL) ? TFT_WHITE : TFT_BLACK;
+  M5.Display.setTextColor(textColor);
   M5.Display.setTextSize(1);
   M5.Display.setCursor(10, M5.Display.height() - 20);
   switch (state) {
